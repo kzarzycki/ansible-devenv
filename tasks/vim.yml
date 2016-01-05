@@ -1,0 +1,12 @@
+- name: Install rich vimrc
+  template: src=vimrc dest=/etc/vimrc
+
+- name: Create vim bundle directory
+  file: dest=/etc/vim/bundle state=directory mode=0755
+
+- name: clone vundle
+  git: repo=http://github.com/gmarik/vundle.git dest=/etc/vim/bundle/vundle
+
+- name: Install vundle plugin
+  shell: vim -E -s -c "source /etc/vimrc" +PluginInstall +qall -V
+

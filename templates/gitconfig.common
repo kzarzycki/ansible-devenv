@@ -1,0 +1,65 @@
+[color]
+	ui = true 
+[core]
+	whitespace = trailing-space,space-before-tab,cr-at-eol
+	pager = less -+$LESS -RS
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	push-for-master = push origin HEAD:refs/for/master
+	ca = commit -a
+	ci = commit
+	st = status -sb
+	co = checkout
+	br = branch
+  d = diff --color
+  wdiff = d --color --word-diff
+  unstage = reset HEAD --
+  fixup = !sh -c 'git commit --fixup=$1' -
+  squash = !sh -c 'git commit --squash=$1' -
+  ri = rebase --interactive --autosquash
+  rim = rebase --interactive --autosquash master 
+  rid = rebase --interactive --autosquash develop 
+  rewind-hard-one-commit = reset --hard HEAD^ --
+  pull = pull --rebase
+
+  # Shows changes on the current branch or the one specified as the first
+  # argument to "git out" that are not pushed to the remote master
+  outgoing = !sh -c \"git log --reverse --oneline origin/master..$1\"
+  out = !git outgoing \"$@\"
+  firstoutgoing = !sh -c \"git rev-list --ancestry-path $(git merge-base master $1)..$1 | tail -1\"
+  merge1step = !sh -c \"git merge $(git firstoutgoing $1)\"
+ 
+  # Fetches the latest origin changes but does not pull, then says
+  # which commits are missing on the current branch, or the first argument
+  incoming = "!sh -c \"git fetch; git log --reverse --oneline $1..origin/master\""
+  in = !git incoming \"$@\"
+
+  # Shows a nice graphical log like you might see in Bitbucket
+  glog = log --oneline --graph --decorate --all
+ 
+  # Pushes whatever you have staged locally onto the current commit without
+  # changing the message (similar to qrefresh).  Use with -a to pick up unstaged
+  # changes
+  refresh = commit --amend -C HEAD
+[credential]
+	helper = cache --timeout=3600
+[push]
+	default = current
+
+
+[difftool "kdiff3"]
+      path = kdiff3
+          trustExitCode = false
+[difftool]
+      prompt = false
+[diff]
+      tool = kdiff3
+[mergetool "kdiff3"]
+      path = kdiff3
+          trustExitCode = false
+[mergetool]
+      keepBackup = false
+[merge]
+      tool = kdiff3
+[rerere]
+	enabled = true

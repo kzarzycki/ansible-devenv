@@ -1,0 +1,10 @@
+---
+- include: redhat/main.yml
+  when: ansible_os_family == "RedHat"
+
+- include: vim.yml
+
+
+- name: Install gitconfig.common
+  template: src=gitconfig.common dest=/etc/gitconfig
+

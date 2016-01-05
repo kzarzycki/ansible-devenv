@@ -1,0 +1,12 @@
+---
+- name: Add repository
+  get_url: url=https://bintray.com/sbt/rpm/rpm dest=/etc/yum.repos.d/bintray-sbt-rpm.repo
+
+- name: Install sbt 
+  yum: name={{item}}
+  with_items:
+    - sbt
+
+- name: Install scala
+  yum: name=http://downloads.typesafe.com/scala/{{scala_version}}/scala-{{scala_version}}.rpm state=present
+

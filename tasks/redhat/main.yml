@@ -1,0 +1,11 @@
+---
+- name: Install dev packages
+  yum: name={{item}} state=present
+  with_items: 
+    - maven
+    - bash-completion
+    - vim
+    - mysql-connector-java
+    - mysql
+
+- include: scala.yml
