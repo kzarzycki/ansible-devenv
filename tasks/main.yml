@@ -6,5 +6,7 @@
 
 
 - name: Install gitconfig.common
-  template: src=gitconfig.common dest=/etc/gitconfig
+  template: src=gitconfig.common dest=~{{me}}/gitconfig.common owner={{me}} mode=0666
 
+- name: Include gitconfig.common in ~/.gitconfig
+  lineinfile: line="[include] path=gitconfig.common" dest=~{{me}}/.gitconfig create=yes owner={{me}}

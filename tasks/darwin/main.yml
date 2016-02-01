@@ -1,0 +1,7 @@
+- name: Install basic components
+  homebrew: name={{item}}
+  with_items:
+    - wget
+    - terminal-notifier
+
+

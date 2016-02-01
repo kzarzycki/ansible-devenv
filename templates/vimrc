@@ -132,8 +132,8 @@ cmap w!! w !sudo tee > /dev/null %
 set nocompatible              " be iMproved, required
 filetype off                  " required
 " set the runtime path to include Vundle and initialize
-set rtp+=/etc/vim/bundle/vundle
-call vundle#rc('/etc/vim/bundle')   " Use a shared folder instead of ~/.vimrc/bundle
+set rtp+={{vim_etc}}/vim/bundle/vundle
+call vundle#rc('{{vim_etc}}/vim/bundle')   " Use a shared folder instead of ~/.vimrc/bundle
 " call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')

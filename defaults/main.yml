@@ -1,3 +1,11 @@
 ---
 # defaults file for devenv
 scala_version: "2.11.6"
+
+vim_prefix:
+  Darwin: /usr/local/share
+  RedHat: /etc
+  Debian: /etc
+
+
+vim_etc: "{{vim_prefix[ansible_os_family]}}"
